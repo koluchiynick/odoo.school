@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="hr_hospital_doctor_dolittle" model="hr.hospital.doctor">
+        <field name="name">Dolittle</field>
+    </record>
+
+    <record id="hr_hospital_doctor_house" model="hr.hospital.doctor">
+        <field name="name">House</field>
+    </record>
+
+    <record id="hr_hospital_doctor_grey" model="hr.hospital.doctor">
+        <field name="name">Grey</field>
+    </record>
+
+</odoo>

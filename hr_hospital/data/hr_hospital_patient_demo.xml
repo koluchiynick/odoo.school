@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="hr_hospital_patient_сarrey" model="hr.hospital.patient">
+        <field name="name">Jim Carrey</field>
+        <field name="birth_date" eval="DateTime.now().replace(year=1962, month=1, day=17, hour=0, minute=0, second=0)"/>
+    </record>
+
+    <record id="hr_hospital_patient_bandera" model="hr.hospital.patient">
+        <field name="name">Stepan Bandera</field>
+        <field name="birth_date" eval="DateTime.now().replace(year=1909, month=1, day=1, hour=0, minute=0, second=0)"/>
+    </record>
+
+    <record id="hr_hospital_patient_biden" model="hr.hospital.patient">
+        <field name="name">Joe Biden</field>
+        <field name="birth_date" eval="DateTime.now().replace(year=1942, month=11, day=20, hour=0, minute=0, second=0)"/>
+    </record>
+
+</odoo>
