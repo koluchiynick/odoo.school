@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+  <!-- Назва "id" згідно рекомендацій - "hr_hospital_menu_main" -->
+  <!-- Потрібно додати параметр "web_icon" для зображення пункту кореневого меню -->
   <menuitem
     id="hr_hospital_main_menu"
     name="Hospital"
     sequence="1"/>
 
+  <!-- Назва "id" згідно рекомендацій - "hr_hospital_menu_catalog" -->
   <menuitem
     id="hr_hospital_catalog_menu"
     name="Catalog"

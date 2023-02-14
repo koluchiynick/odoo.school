@@ -5,7 +5,7 @@
         <field name="name">hr.hospital.doctor.view.tree</field>
         <field name="model">hr.hospital.doctor</field>
         <field name="arch" type="xml">
-            <tree string="Doctors">
+            <tree>  <!-- параметр "string" не потрібно вказувати -->
                 <field name="name" />
             </tree>
         </field>
@@ -15,7 +15,7 @@
         <field name="name">hr.hospital.doctor.view.form</field>
         <field name="model">hr.hospital.doctor</field>
         <field name="arch" type="xml">
-            <form string="Doсtor">
+            <form>  <!-- параметр "string" не потрібно вказувати -->
                 <sheet>
                     <group>
                         <field name="name" />
@@ -25,7 +25,8 @@
         </field>
     </record>
 
-    <record id="hr_hospital_doctor_action" model="ir.actions.act_window">
+      <!-- Назва "id" згідно рекомендацій - "hr_hospital_doctor_action_view_tree" -->
+      <record id="hr_hospital_doctor_action" model="ir.actions.act_window">
         <field name="name">Doctors</field>
         <field name="res_model">hr.hospital.doctor</field>
         <field name="view_mode">tree,form</field>        

@@ -1,7 +1,6 @@
 {
     'name': "hr_hospital",
     'summary': "HOSPITAL",
-    'description': "Hospital module",
     'author': "Mykola Ostroukh",
     'website': "https://github.com/koluchiynick",
     'category': 'Customizations',
@@ -17,7 +16,6 @@
         'views/hr_hospital_patient_visit_views.xml',
         'data/hr_hospital_type_disease_data.xml',
     ],
-    
     'demo': [
         'data/hr_hospital_doctor_demo.xml',
         'data/hr_hospital_patient_demo.xml',
