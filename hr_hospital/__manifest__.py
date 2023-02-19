@@ -1,8 +1,6 @@
 {
     'name': "hr_hospital",
-    'summary': """
-        Hospital management. 
-        Management of records of doctors' visits with patients""",
+    'summary': "Hospital management. Management of records of doctors' visits with patients",
     'author': "Mykola Ostroukh",
     'website': "https://github.com/koluchiynick",
     'category': 'Customizations',
