@@ -5,7 +5,7 @@
         <field name="name">hr.hospital.patient.visit.view.tree</field>
         <field name="model">hr.hospital.patient.visit</field>
         <field name="arch" type="xml">
-            <tree string="Patient visits">
+            <tree>
                 <field name="visit_date" />
                 <field name="doctor_id" />
                 <field name="patient_id" />
@@ -18,7 +18,7 @@
         <field name="name">hr.hospital.patient.visit.view.form</field>
         <field name="model">hr.hospital.patient.visit</field>
         <field name="arch" type="xml">
-            <form string="Patient visit">
+            <form>
                 <sheet>
                     <group>
                         <field name="visit_date" />
@@ -33,7 +33,7 @@
         </field>
     </record>
 
-    <record id="hr_hospital_patient_visit_action" model="ir.actions.act_window">
+    <record id="hr_hospital_patient_visit_action_tree" model="ir.actions.act_window">
         <field name="name">Patient visits</field>
         <field name="res_model">hr.hospital.patient.visit</field>
         <field name="view_mode">tree,form</field>        
@@ -42,8 +42,8 @@
     <menuitem
         id="hr_hospital_patient_visit_menu"
         name="Patient visits"
-        action="hr_hospital_patient_visit_action"
-        parent="hr_hospital_catalog_menu"
+        action="hr_hospital_patient_visit_action_tree"
+        parent="hr_hospital_menu_main"
         sequence="40"/>
 
 </odoo>

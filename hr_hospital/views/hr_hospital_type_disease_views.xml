@@ -5,7 +5,7 @@
         <field name="name">hr.hospital.type.disease.view.tree</field>
         <field name="model">hr.hospital.type.disease</field>
         <field name="arch" type="xml">
-            <tree string="Type of diseases">
+            <tree>
                 <field name="name" />
             </tree>
         </field>
@@ -15,7 +15,7 @@
         <field name="name">hr.hospital.type.disease.view.form</field>
         <field name="model">hr.hospital.type.disease</field>
         <field name="arch" type="xml">
-            <form string="Type of disease">
+            <form>
                 <sheet>
                     <group>
                         <field name="name" />
@@ -25,7 +25,7 @@
         </field>
     </record>
 
-    <record id="hr_hospital_type_disease_action" model="ir.actions.act_window">
+    <record id="hr_hospital_type_disease_action_tree" model="ir.actions.act_window">
         <field name="name">Type of diseases</field>
         <field name="res_model">hr.hospital.type.disease</field>
         <field name="view_mode">tree,form</field>        
@@ -34,8 +34,8 @@
     <menuitem
         id="hr_hospital_type_disease_menu"
         name="Type of diseases"
-        action="hr_hospital_type_disease_action"
-        parent="hr_hospital_catalog_menu"
+        action="hr_hospital_type_disease_action_tree"
+        parent="hr_hospital_menu_main"
         sequence="30"/>
 
 </odoo>
