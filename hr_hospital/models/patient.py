@@ -18,13 +18,13 @@ class HospitalPatient(models.Model):
 
     @api.depends('birth_date')
     def _compute_age(self):
-        self.ensure_one
+        self.ensure_one()
         if self.birth_date:
             odds_date = date.today() - self.birth_date
             self.age = odds_date.days // 365
         else:
             self.age = 0
-    
+
     @api.model
     def create(self, vals):
         record = super(HospitalPatient, self).create(vals)
@@ -33,7 +33,6 @@ class HospitalPatient(models.Model):
                 'appointment_date': fields.Datetime.now(),
                 'patient_id': record.id,
                 'doctor_id': vals['personal_doktor_id'],
-                
             }
             self.env['hr.hospital.history.personal.doctor'].create(values)
         return record

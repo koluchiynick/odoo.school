@@ -1,6 +1,6 @@
 {
     'name': "hr_hospital",
-    'summary': 
+    'summary':
         """Hospital management.
          Management of records of doctors' visits with patients""",
     'author': "Mykola Ostroukh",
@@ -17,15 +17,15 @@
         'views/hr_hospital_type_disease_views.xml',
         'views/hr_hospital_disease_category_views.xml',
         'views/hr_hospital_patient_visit_views.xml',
-        'views/hr_hospital_diagnosis_views.xml', 
-        'views/hr_hospital_history_personal_doctor_views.xml', 
-        'views/hr_hospital_doctor_schedule_views.xml', 
+        'views/hr_hospital_diagnosis_views.xml',
+        'views/hr_hospital_history_personal_doctor_views.xml',
+        'views/hr_hospital_doctor_schedule_views.xml',
         'wizard/change_doctor_wizard_views.xml',
         'wizard/disease_report_wizard_views.xml',
         'wizard/rescheduling_visit_doctor_wizard_views.xml',
         'wizard/filling_doctor_schedule_wizard_views.xml',
         'report/disease_report.xml',
-        'report/disease_report_template.xml',       
+        'report/disease_report_template.xml',
     ],
     'demo': [
         'data/hr_hospital_doctor_demo.xml',

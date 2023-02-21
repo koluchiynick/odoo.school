@@ -1,12 +1,12 @@
-from odoo import models, fields, _
-
 from datetime import timedelta
+
+from odoo import models, fields, _
 
 
 class FillingDoctorScheduleWizard(models.TransientModel):
     _name = 'hr.hospital.filling.doctor.schedule.wizard'
     _description = 'Filling in the doctor work schedule'
-    
+
     doctor_id = fields.Many2one(comodel_name='hr.hospital.doctor',
                                 required=True)
     start_date = fields.Date(required=True)
@@ -22,7 +22,7 @@ class FillingDoctorScheduleWizard(models.TransientModel):
             'type': 'ir.actions.act_window',
             'view_mode': 'form',
             'res_model': 'hr.hospital.filling.doctor.schedule.wizard',
-            'target': 'new',            
+            'target': 'new',
         }
 
     def action_change_visit(self):
@@ -33,7 +33,7 @@ class FillingDoctorScheduleWizard(models.TransientModel):
             end_time = self.end_time_odd
             if current_day.day % 2 == 0:
                 start_time = self.start_time_even
-                end_time = self.end_time_even            
+                end_time = self.end_time_even
             self.env['hr.hospital.doctor.schedule'].create(
                 {
                     'doctor_id': self.doctor_id.id,

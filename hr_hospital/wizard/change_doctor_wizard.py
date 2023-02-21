@@ -9,7 +9,7 @@ class ChangeDoctorWizard(models.TransientModel):
                                 required=True)
     patient_ids = fields.Many2many(comodel_name='hr.hospital.patient',
                                    required=True)
-    
+
     def action_change_doctor(self):
         self.ensure_one()
         self.patient_ids.write({'personal_doktor_id': self.doctor_id.id})
