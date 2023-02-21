@@ -37,14 +37,16 @@ class HospitalPatientVisit(models.Model):
             visit_date_val = vals['visit_date']
             for rec in self:
                 if rec.is_visit_done and visit_date_val != rec.visit_date:
-                    raise UserError(_('You cannot change the date and time of '
-                        'a visit that has already taken place.'))
+                    raise UserError(
+                        _('You cannot change the date and time of '
+                            'a visit that has already taken place.'))
         if 'doctor_id' in vals:
             doctor_id_val = vals['doctor_id']
             for rec in self:
                 if rec.is_visit_done and doctor_id_val != rec.doctor_id:
-                    raise UserError(_('You cannot change your doctor '
-                        'a visit that has already taken place.'))
+                    raise UserError(
+                        _('You cannot change your doctor '
+                            'a visit that has already taken place.'))
         return super(HospitalPatientVisit, self).write(vals)
 
     @api.constrains('visit_date')
