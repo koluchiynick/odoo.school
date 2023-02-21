@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_hospital_history_personal_doctor_view_tree" model="ir.ui.view">
+        <field name="name">hr.hospital.history.personal.doctor.view.tree</field>
+        <field name="model">hr.hospital.history.personal.doctor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="appointment_date" />
+                <field name="patient_id" />
+                <field name="doctor_id" />                        
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_hospital_history_personal_doctor_view_form" model="ir.ui.view">
+        <field name="name">hr.hospital.history.personal.doctor.view.form</field>
+        <field name="model">hr.hospital.history.personal.doctor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>                
+                    <group>
+                        <field name="appointment_date" />
+                        <field name="patient_id" />
+                        <field name="doctor_id" /> 
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_hospital_history_personal_doctor_action_tree" model="ir.actions.act_window">
+        <field name="name">History personal doctor</field>
+        <field name="res_model">hr.hospital.history.personal.doctor</field>
+        <field name="view_mode">tree,form</field>        
+    </record>
+
+    <menuitem
+        id="hr_hospital_history_personal_doctor_menu"
+        name="History personal doctor"
+        action="hr_hospital_history_personal_doctor_action_tree"
+        parent="hr_hospital_menu_main"
+        sequence="60"/>
+
+</odoo>
