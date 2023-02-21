@@ -14,13 +14,13 @@ class HospitalPatientVisit(models.Model):
     type_disease_id = fields.Many2one(comodel_name='hr.hospital.type.disease')
     diagnosis_id = fields.Many2one(comodel_name='hr.hospital.diagnosis')
     active = fields.Boolean(default=True)
-    is_visit_done = fields.Boolean(string='Done',default=False)
+    is_visit_done = fields.Boolean(string='Done', default=False)
 
     def action_archive(self):
         for record in self:
             if record.diagnosis_id:
                 raise UserError(
-                    _('This visitor has already filled in the diagnosis, '\
+                    _('This visitor has already filled in the diagnosis, '
                         'archiving is not possible.'))
         return super(HospitalPatientVisit, self).action_archive()
 
@@ -28,23 +28,23 @@ class HospitalPatientVisit(models.Model):
         for record in self:
             if record.diagnosis_id:
                 raise UserError(
-                    _('This visitor has already filled in the diagnosis, '\
+                    _('This visitor has already filled in the diagnosis, '
                         'delete is not possible.'))
         return super(HospitalPatientVisit, self).unlink()
 
     def write(self, vals):
         if 'visit_date' in vals:
             visit_date_val = vals['visit_date']
-            for record in self:
-                if record.is_visit_done and visit_date_val != record.visit_date:
-                    raise UserError(_('You cannot change the date and time of'\
-                        ' a visit that has already taken place.'))
+            for rec in self:
+                if rec.is_visit_done and visit_date_val != rec.visit_date:
+                    raise UserError(_('You cannot change the date and time of '
+                        'a visit that has already taken place.'))
         if 'doctor_id' in vals:
             doctor_id_val = vals['doctor_id']
-            for record in self:
-                if record.is_visit_done and doctor_id_val != record.doctor_id:
-                    raise UserError(_('You cannot change your doctor'\
-                        ' a visit that has already taken place.'))
+            for rec in self:
+                if rec.is_visit_done and doctor_id_val != rec.doctor_id:
+                    raise UserError(_('You cannot change your doctor '
+                        'a visit that has already taken place.'))
         return super(HospitalPatientVisit, self).write(vals)
 
     @api.constrains('visit_date')
