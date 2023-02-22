@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="hr_hospital_type_disease_cold" model="hr.hospital.type.disease">
+        <field name="name">Cold</field>
+        <field name="category_id" eval="ref('hr_hospital.hr_hospital_disease_category_respiratory')"/>
+    </record>
+
+    <record id="hr_hospital_type_disease_covid" model="hr.hospital.type.disease">
+        <field name="name">Covid19</field>
+        <field name="category_id" eval="ref('hr_hospital.hr_hospital_disease_category_viral')"/>
+    </record>
+
+    <record id="hr_hospital_type_disease_flu" model="hr.hospital.type.disease">
+        <field name="name">Flu</field>
+        <field name="category_id" eval="ref('hr_hospital.hr_hospital_disease_category_viral')"/>
+    </record>
+
+    <record id="hr_hospital_type_disease_malaria" model="hr.hospital.type.disease">
+        <field name="name">Malaria</field>
+        <field name="category_id" eval="ref('hr_hospital.hr_hospital_disease_category_tropical')"/>
+    </record>
+
+</odoo>
+
+

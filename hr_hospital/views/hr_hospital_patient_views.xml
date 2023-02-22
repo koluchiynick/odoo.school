@@ -7,6 +7,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
+                <field name="last_name" />
+                <field name="phone" />
                 <field name="birth_date" />
             </tree>
         </field>
@@ -20,7 +22,15 @@
                 <sheet>
                     <group>
                         <field name="name" />
+                        <field name="last_name" />
+                        <field name="gender" />
+                        <field name="contact_person_id" />
+                        <field name="phone" />
+                        <field name="email" />
+                        <field name="foto" widget='image'/>
                         <field name="birth_date" />
+                        <field name="age" />
+                        <field name="personal_doktor_id" />
                     </group>
                 </sheet>
             </form>

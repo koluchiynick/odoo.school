@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <record id="action_disease_report" model="ir.actions.report">
+        <field name="name">Disease report</field>
+        <field name="model">hr.hospital.disease.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hr_hospital.disease_report</field>
+        <field name="report_file">hr_hospital..disease_report</field>
+    </record> 
+    
+
+</odoo>

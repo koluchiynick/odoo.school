@@ -2,15 +2,21 @@
 <odoo noupdate="1">
 
     <record id="hr_hospital_doctor_dolittle" model="hr.hospital.doctor">
-        <field name="name">Dolittle</field>
+        <field name="name">Ban</field>
+        <field name="last_name">Dolittle</field>
+        <field name="gender">male</field>
     </record>
 
     <record id="hr_hospital_doctor_house" model="hr.hospital.doctor">
-        <field name="name">House</field>
+        <field name="name">Rick</field>
+        <field name="last_name">House</field>
+        <field name="gender">male</field>
     </record>
 
     <record id="hr_hospital_doctor_grey" model="hr.hospital.doctor">
-        <field name="name">Grey</field>
+        <field name="name">Anna</field>
+        <field name="last_name">Grey</field>
+        <field name="gender">female</field>      
     </record>
 
 </odoo>

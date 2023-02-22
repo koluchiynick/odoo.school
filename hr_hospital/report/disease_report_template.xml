@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="disease_report">
+        <t t-call="web.html_container">
+            
+                <t t-call="web.external_layout">
+                    <div class="page">
+                      <t t-foreach="data_report" t-as="rec">
+                        <div>
+                            <h3><t t-esc="rec['disease']"></t><span> count=</span><t t-esc="rec['count']"></t></h3>                            
+                        </div>
+                        <t t-foreach="rec['diagnosis']" t-as="diagnosis" >
+                            <div>
+                                <span t-esc="diagnosis"></span>
+                            </div>    
+                        </t>
+                      </t>   
+                    </div>
+                </t>
+            
+        </t>
+    </template>
+
+</odoo>
