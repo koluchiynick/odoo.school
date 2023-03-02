@@ -42,7 +42,7 @@
             <pivot>
                 <field name="name" type="row"/>
                 <field name="type_disease_id" type="row"/>
-                <field name="date_diagnosis" type="col" interval="year"/>
+                <!-- <field name="date_diagnosis" type="col" interval="year"/> -->
                 <field name="date_diagnosis" type="col" interval="month"/>                
             </pivot>
         </field>
