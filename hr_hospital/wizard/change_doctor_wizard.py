@@ -18,7 +18,7 @@ class ChangeDoctorWizard(models.TransientModel):
             'res_model': 'hr.hospital.change.doctor.wizard',
             'target': 'new',
         }
-    
+
     def action_change_doctor(self):
         self.ensure_one()
         self.patient_ids.write({'personal_doctor_id': self.doctor_id.id})
