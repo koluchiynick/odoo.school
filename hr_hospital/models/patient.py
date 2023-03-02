@@ -14,7 +14,7 @@ class HospitalPatient(models.Model):
     passport = fields.Char()
     contact_person_id = fields.Many2one(
         comodel_name='hr.hospital.contact.person')
-    personal_doktor_id = fields.Many2one(comodel_name='hr.hospital.doctor')
+    personal_doctor_id = fields.Many2one(comodel_name='hr.hospital.doctor')
 
     @api.depends('birth_date')
     def _compute_age(self):
@@ -28,24 +28,24 @@ class HospitalPatient(models.Model):
     @api.model
     def create(self, vals):
         record = super(HospitalPatient, self).create(vals)
-        if 'personal_doktor_id' in vals:
+        if 'personal_doctor_id' in vals:
             values = {
                 'appointment_date': fields.Datetime.now(),
                 'patient_id': record.id,
-                'doctor_id': vals['personal_doktor_id'],
+                'doctor_id': vals['personal_doctor_id'],
             }
             self.env['hr.hospital.history.personal.doctor'].create(values)
         return record
 
     def write(self, vals):
         record = super(HospitalPatient, self).write(vals)
-        if 'personal_doktor_id' in vals:
+        if 'personal_doctor_id' in vals:
             for record in self:
-                if record.personal_doktor_id != vals['personal_doktor_id']:
+                if record.personal_doctor_id != vals['personal_doctor_id']:
                     values = {
                         'appointment_date': fields.Datetime.now(),
                         'patient_id': record.id,
-                        'doctor_id': vals['personal_doktor_id'],
+                        'doctor_id': vals['personal_doctor_id'],
                     }
                 self.env['hr.hospital.history.personal.doctor'].create(values)
         return record

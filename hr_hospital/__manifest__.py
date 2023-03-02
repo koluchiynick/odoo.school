@@ -6,7 +6,7 @@
     'author': "Mykola Ostroukh",
     'website': "https://github.com/koluchiynick",
     'category': 'Customizations',
-    'version': '15.0.2.0.0',
+    'version': '15.0.3.0.0',
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': [
@@ -20,6 +20,7 @@
         'views/hr_hospital_diagnosis_views.xml',
         'views/hr_hospital_history_personal_doctor_views.xml',
         'views/hr_hospital_doctor_schedule_views.xml',
+        'views/hr_hospital_analysis_views.xml',
         'wizard/change_doctor_wizard_views.xml',
         'wizard/disease_report_wizard_views.xml',
         'wizard/rescheduling_visit_doctor_wizard_views.xml',

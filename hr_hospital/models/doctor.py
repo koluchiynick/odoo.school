@@ -9,4 +9,12 @@ class HospitalDoctor(models.Model):
     specialty = fields.Char()
     is_intern = fields.Boolean(default=False)
     mentor_id = fields.Many2one(comodel_name='hr.hospital.doctor',
-                                domain="[('is_intern', '=', False)]")
+                                domain=[('is_intern', '=', False)])
+
+    mentor_ids = fields.One2many(comodel_name='hr.hospital.doctor',
+        inverse_name='mentor_id',
+    )
+
+    personal_patient_ids = fields.One2many(comodel_name='hr.hospital.patient',
+        inverse_name='personal_doctor_id',
+    )

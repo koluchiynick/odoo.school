@@ -14,13 +14,14 @@ class DiseaseCategory(models.Model):
     complete_name = fields.Char(compute='_compute_complete_name',
                                 recursive=True,
                                 store=True)
-    parent_id = fields.Many2one('hr.hospital.disease.category',
-                                'Parent Category',
+    parent_id = fields.Many2one(comodel_name='hr.hospital.disease.category',
+                                string='Parent Category',
                                 index=True,
                                 ondelete='cascade')
     parent_path = fields.Char(index=True)
-    child_id = fields.One2many('hr.hospital.disease.category', 'parent_id',
-                               'Child Categories')
+    child_id = fields.One2many(comodel_name='hr.hospital.disease.category',
+                               inverse_name='parent_id',
+                               string='Child Categories')
     disease_count = fields.Integer(compute='_compute_disease_count')
 
     @api.depends('name', 'parent_id.complete_name')

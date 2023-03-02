@@ -20,24 +20,125 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="name" />
-                        <field name="last_name" />
-                        <field name="gender" />
-                        <field name="phone" />
-                        <field name="email" />
-                        <field name="foto" />
+                        <group>
+                            <field name="name" />
+                            <field name="last_name" />
+                        </group>  
+                        <group>
+                            <field name="foto" widget='image' class="oe_avatar"/>    
+                        </group>                                        
+                    </group>
+                    <group>
+                        <group>
+                            <field name="gender" />
+                            <field name="specialty" />                            
+                        </group>
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="email" widget="email"/>                            
+                        </group>              
+                    </group>
+                    <group>
                         <field name="is_intern" />
                         <field name="mentor_id" attrs="{'invisible':[('is_intern','=',False)]}"/>
                     </group>
+
+                    <notebook>
+                        <page string="List intern" attrs="{'invisible':[('is_intern','=',True)]}">
+                            <field name="mentor_ids">
+                                <kanban mode='kanban'>
+                                    <field name="id"/>
+                                    <field name="name"/>
+                                    <field name="last_name" />
+                                    <field name="foto" />
+                                    <field name="gender"/>
+                                    <field name="specialty"/>
+                                    <field name="phone"/>
+                                    <field name="email"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div t-att-class="'oe_kanban_global_click'">
+                                                <div class="o_kanban_image">
+                                                    <img alt="Contact image" t-att-src="kanban_image('hr.hospital.doctor', 'foto', record.id.raw_value)"/>
+                                                </div>
+                                                <div class="oe_kanban_details">
+                                                    <field name="name"/>
+                                                    <field name="last_name"/>
+                                                    <div t-if="record.email.raw_value"><field name="email" widget="email"/></div>
+                                                    <div t-if="record.phone.raw_value">Phone: <t t-esc="record.phone.value"/></div>                                                    
+                                                </div>
+                                            </div>                                            
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>    
+                        </page>
+                    </notebook>                    
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="hr_hospital_doctor_create_patient_visit_action_form" model="ir.actions.act_window">
+        <field name="name">Create visits</field>
+        <field name="res_model">hr.hospital.patient.visit</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_doctor_id': active_id}</field>       
+    </record>
+
+    <record id="hr_hospital_doctor_view_kanban" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.view.kanban</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="specialty">
+            <field name="id"/>
+            <field name="name"/>
+            <field name="last_name" />
+            <field name="foto" />
+            <field name="gender"/>
+            <field name="specialty"/>
+            <field name="phone"/>
+            <field name="email"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img alt="Contact image" t-att-src="kanban_image('hr.hospital.doctor', 'foto', record.id.raw_value)"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <field name="name"/>
+                                <field name="last_name"/>
+                                <div t-if="record.email.raw_value"><field name="email" widget="email"/></div>
+                                <div t-if="record.phone.raw_value">Phone: <t t-esc="record.phone.value"/></div>                                                    
+                            </div> 
+                            <div class="oe_kanban_footer">
+                                <button class="oe_stat_button" type="action" name="%(hr_hospital_doctor_create_patient_visit_action_form)d" >
+                                    Create visit </button>                                
+                            </div>
+                                          
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="hr_hospital_doctor_view_search" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.view.search</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="intern_filter" string="Intern" domain="[('is_intern','=',True)]"/>
+                <filter name="mentor_filter" string="Mentor" domain="[('mentor_ids.is_intern','=',True)]"/>
+                <filter name="not_personal_doctor_filter" string="Not personal doctor" domain="[('personal_patient_ids','=',False)]"/>
+            </search>
         </field>
     </record>
 
     <record id="hr_hospital_doctor_action_view_tree" model="ir.actions.act_window">
         <field name="name">Doctors</field>
         <field name="res_model">hr.hospital.doctor</field>
-        <field name="view_mode">tree,form</field>        
+        <field name="view_mode">kanban,tree,form</field>        
     </record>
 
     <menuitem

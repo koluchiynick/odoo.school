@@ -7,7 +7,7 @@
         <field name="model">hr.hospital.disease.report.wizard</field>
         <field name="report_type">qweb-html</field>
         <field name="report_name">hr_hospital.disease_report</field>
-        <field name="report_file">hr_hospital..disease_report</field>
+        <field name="report_file">hr_hospital.disease_report</field>
     </record> 
     
 

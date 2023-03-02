@@ -10,26 +10,24 @@ class HospitalPatientVisit(models.Model):
     doctor_id = fields.Many2one(comodel_name='hr.hospital.doctor')
     patient_id = fields.Many2one(comodel_name='hr.hospital.patient')
     visit_date = fields.Datetime(string='Date/time visit',
-                                 default=fields.Datetime.now())
+                                 default=fields.Datetime.now)
     type_disease_id = fields.Many2one(comodel_name='hr.hospital.type.disease')
     diagnosis_id = fields.Many2one(comodel_name='hr.hospital.diagnosis')
     active = fields.Boolean(default=True)
     is_visit_done = fields.Boolean(string='Done', default=False)
 
     def action_archive(self):
-        for record in self:
-            if record.diagnosis_id:
-                raise UserError(
-                    _('This visitor has already filled in the diagnosis, '
-                        'archiving is not possible.'))
+        if self.filtered(lambda x: x.diagnosis_id):
+            raise UserError(
+                _('This visitor has already filled in the diagnosis, '
+                    'archiving is not possible.'))
         return super(HospitalPatientVisit, self).action_archive()
 
     def unlink(self):
-        for record in self:
-            if record.diagnosis_id:
-                raise UserError(
-                    _('This visitor has already filled in the diagnosis, '
-                        'delete is not possible.'))
+        if self.filtered(lambda x: x.diagnosis_id):
+            raise UserError(
+                _('This visitor has already filled in the diagnosis, '
+                    'delete is not possible.'))
         return super(HospitalPatientVisit, self).unlink()
 
     def write(self, vals):
@@ -50,7 +48,7 @@ class HospitalPatientVisit(models.Model):
         return super(HospitalPatientVisit, self).write(vals)
 
     @api.constrains('visit_date')
-    def check_visit_time(self):
+    def _constrains_check_visit_time(self):
         visit_list = self.env['hr.hospital.patient.visit'].search([])
         for rec in self:
             for visit in visit_list:

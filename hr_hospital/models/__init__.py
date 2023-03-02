@@ -7,3 +7,4 @@ from . import diagnosis
 from . import category_disease
 from . import history_personal_doctor
 from . import doctor_schedule
+from . import analysis

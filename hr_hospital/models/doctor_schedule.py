@@ -19,10 +19,9 @@ class DoctorSchedule(models.Model):
             for schedule in schedule_list:
                 if rec.id == schedule.id:
                     continue
-                if rec.admission_date == schedule.admission_date:
-                    if rec.start_time <= schedule.start_time \
-                            and rec.end_time >= schedule.start_time:
-                        raise ValidationError(_('This time is already taken'))
-                    if rec.start_time <= schedule.end_time \
-                            and rec.start_time >= schedule.start_time:
-                        raise ValidationError(_('This time is already taken'))
+                if rec.admission_date != schedule.admission_date:
+                    continue
+                if rec.start_time <= schedule.start_time <= rec.end_time:
+                    raise ValidationError(_('This time is already taken'))
+                if schedule.end_time >= rec.start_time >= schedule.start_time:
+                    raise ValidationError(_('This time is already taken'))
