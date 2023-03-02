@@ -10,4 +10,3 @@ class Analysis(models.Model):
     patient_id = fields.Many2one(comodel_name='hr.hospital.patient')
     sample_type = fields.Char()
     result_analysis = fields.Text()
-    
