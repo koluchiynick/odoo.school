@@ -12,7 +12,7 @@ class ReschedulingVisitDoctorWizard(models.TransientModel):
     doctor_id = fields.Many2one(comodel_name='hr.hospital.doctor',
                                 required=True)
     visit_date = fields.Datetime(string='Date/time visit',
-                                 default=fields.Datetime.now(), required=True)
+                                 default=fields.Datetime.now, required=True)
 
     def action_open_wizard(self):
         return {

@@ -38,10 +38,21 @@
         </field>
     </record>
 
+    <record id="hr_hospital_patient_visit_view_calendar" model="ir.ui.view">
+        <field name="name">hr.hospital.patient.visit.view.calendar</field>
+        <field name="model">hr.hospital.patient.visit</field>
+        <field name="arch" type="xml">
+            <calendar date_start="visit_date" mode="week" color="doctor_id">
+                <field name="doctor_id" />
+                <field name="patient_id" />                
+            </calendar>
+        </field>
+    </record>
+
     <record id="hr_hospital_patient_visit_action_tree" model="ir.actions.act_window">
         <field name="name">Patient visits</field>
         <field name="res_model">hr.hospital.patient.visit</field>
-        <field name="view_mode">tree,form</field>        
+        <field name="view_mode">calendar,tree,form</field>        
     </record>
 
     <menuitem

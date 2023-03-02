@@ -27,6 +27,18 @@
         </field>
     </record>
 
+    <record id="hr_hospital_type_disease_view_search" model="ir.ui.view">
+        <field name="name">hr.hospital.type.disease.view.search</field>
+        <field name="model">hr.hospital.type.disease</field>
+        <field name="arch" type="xml">
+            <search>
+                <searchpanel view_types="tree">
+                    <field name="category_id" hierarchize="1" enable_counters="1" />
+                </searchpanel>                
+            </search>
+        </field>
+    </record>
+
     <record id="hr_hospital_type_disease_action_tree" model="ir.actions.act_window">
         <field name="name">Type of diseases</field>
         <field name="res_model">hr.hospital.type.disease</field>
