@@ -99,7 +99,8 @@
                         </group>              
                     </group>
                     <group>
-                        <field name="personal_doctor_id" />                        
+                        <field name="personal_doctor_id" />
+                        <field name="incidence_rate" />
                     </group>
                     <notebook>
                         <page string="History personal doctor">

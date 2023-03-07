@@ -1,6 +1,6 @@
 from datetime import date
 
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 
 
 class HospitalPatient(models.Model):
@@ -15,6 +15,10 @@ class HospitalPatient(models.Model):
     contact_person_id = fields.Many2one(
         comodel_name='hr.hospital.contact.person')
     personal_doctor_id = fields.Many2one(comodel_name='hr.hospital.doctor')
+    incidence_rate = fields.Selection(selection=[('easy', _('Easy')),
+                                         ('medium', _('Medium')),
+                                         ('hard', _('Hard'))],
+                              default='easy')
 
     @api.depends('birth_date')
     def _compute_age(self):
