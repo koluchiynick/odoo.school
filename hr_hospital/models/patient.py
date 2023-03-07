@@ -16,9 +16,9 @@ class HospitalPatient(models.Model):
         comodel_name='hr.hospital.contact.person')
     personal_doctor_id = fields.Many2one(comodel_name='hr.hospital.doctor')
     incidence_rate = fields.Selection(selection=[('easy', _('Easy')),
-                                         ('medium', _('Medium')),
-                                         ('hard', _('Hard'))],
-                              default='easy')
+                                                 ('medium', _('Medium')),
+                                                 ('hard', _('Hard'))],
+                                      default='easy')
 
     @api.depends('birth_date')
     def _compute_age(self):
