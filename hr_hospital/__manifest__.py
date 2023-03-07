@@ -25,8 +25,10 @@
         'wizard/disease_report_wizard_views.xml',
         'wizard/rescheduling_visit_doctor_wizard_views.xml',
         'wizard/filling_doctor_schedule_wizard_views.xml',
-        'report/disease_report.xml',
         'report/disease_report_template.xml',
+        'report/disease_report.xml',        
+        'report/doctor_report_template.xml',
+        'report/doctor_report.xml',        
     ],
     'demo': [
         'data/hr_hospital_doctor_demo.xml',

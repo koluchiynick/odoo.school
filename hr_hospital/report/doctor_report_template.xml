@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="doctor_template">
+            <div class="text-right">
+               <h1>Doctor: <span t-esc="doc.get_full_name()"/></h1>
+               <h2>Specialty: <span t-field="doc.specialty"/></h2>
+            </div>
+    </template>
+
+    <template id="patient_visit_template">
+        <h2 class="text-center">Patient Visits:</h2>
+        <table class="table-bordered"
+               style="border: 1px solid black;"
+               width="100%">            
+            <thead style="display: table-row-group">
+                <tr>
+                    <th name="th_patient" class="text-center">Patient</th>
+                    <th name="th_visit_date" class="text-center">Visit date</th>
+                    <th name="th_type_disease" class="text-center">Type disease</th>
+                    <th name="th_diagnosis" class="text-center">Diagnosis</th>
+                </tr>
+            </thead>
+            <tbody class="sale_tbody">
+                <t t-foreach="doc.patient_visit_ids" t-as="patient_visit">
+                    <tr>
+                        <td name="td_patient" class="text-left">
+                            <span t-esc="patient_visit.patient_id.get_full_name()"/>
+                        </td>
+                        <td name="td_visit_date" class="text-right">
+                            <span t-field="patient_visit.visit_date"/>
+                        </td>
+                        <td name="td_type_disease" class="text-left">
+                            <span t-field="patient_visit.type_disease_id"/>
+                        </td>
+                        <td name="td_diagnosis" class="text-left">
+                            <span t-field="patient_visit.diagnosis_id"/>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="personal_patient_template">
+        <h2 class="text-center">Personal patient:</h2>
+        <table class="table-bordered"
+               style="border: 1px solid black;"
+               width="100%">            
+            <thead style="display: table-row-group">
+                <tr>
+                    <th name="th_name" class="text-center">Name</th>
+                    <th name="th_last_name" class="text-center">Last Name</th>
+                    <th name="th_gender" class="text-center">Gender</th>
+                    <th name="th_phone" class="text-center">Phone</th>
+                    <th name="th_email" class="text-center">Email</th>
+                    <th name="th_birth_date" class="text-center">Birth date</th>
+                    <th name="th_incidence_rate" class="text-center">Incidence rate</th>
+                </tr>
+            </thead>
+            <tbody class="sale_tbody">
+                <t t-foreach="doc.personal_patient_ids" t-as="personal_patient">
+                    <t t-if="personal_patient.incidence_rate == 'easy'">
+                        <t t-set="style_color" t-value="'background-color:green;'"/>
+                    </t>
+                    <t t-if="personal_patient.incidence_rate == 'medium'">
+                        <t t-set="style_color" t-value="'background-color:yellow;'"/>
+                    </t>
+                    <t t-if="personal_patient.incidence_rate == 'hard'">
+                        <t t-set="style_color" t-value="'background-color:red;'"/>
+                    </t>
+                    <tr t-att-style="style_color">
+                        <td name="td_name" class="text-left">
+                            <span t-field="personal_patient.name"/>
+                        </td>
+                        <td name="td_last_name" class="text-left">
+                            <span t-field="personal_patient.last_name"/>
+                        </td>
+                        <td name="td_gender" class="text-left">
+                            <span t-field="personal_patient.gender"/>
+                        </td>
+                        <td name="td_phone" class="text-left">
+                            <span t-field="personal_patient.phone"/>
+                        </td>
+                        <td name="td_email" class="text-left">
+                            <span t-field="personal_patient.email"/>
+                        </td>
+                        <td name="td_birth_date" class="text-right">
+                            <span t-field="personal_patient.birth_date"/>
+                        </td>
+                        <td name="td_incidence_rate" class="text-center">
+                            <span t-field="personal_patient.incidence_rate"/>
+                        </td>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </template> 
+
+    <template id="print_date_time_city">
+        <div class="text-right">
+            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+            <br/>
+            <t t-if="user.company_id.city">
+                <span t-field="user.company_id.city"/>
+            </t>
+        </div>
+    </template>   
+  
+    <template id="doctor_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-call="hr_hospital.doctor_template"/>
+                        <t t-call="hr_hospital.patient_visit_template"/>
+                        <t t-call="hr_hospital.personal_patient_template"/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <t t-call="hr_hospital.print_date_time_city"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>   
+
+</odoo>

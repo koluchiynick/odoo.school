@@ -91,31 +91,62 @@
         <field name="model">hr.hospital.doctor</field>
         <field name="arch" type="xml">
             <kanban default_group_by="specialty">
-            <field name="id"/>
-            <field name="name"/>
-            <field name="last_name" />
-            <field name="foto" />
-            <field name="gender"/>
-            <field name="specialty"/>
-            <field name="phone"/>
-            <field name="email"/>
+                <field name="id"/>
+                <field name="name"/>
+                <field name="last_name" />
+                <field name="foto" />
+                <field name="gender"/>
+                <field name="specialty"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="personal_patient_ids" />
                 <templates>
                     <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_global_click">
-                            <div class="o_kanban_image">
-                                <img alt="Contact image" t-att-src="kanban_image('hr.hospital.doctor', 'foto', record.id.raw_value)"/>
+                        <div class="oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown">
+                                <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                                    <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>                                    
+                                </div>
                             </div>
-                            <div class="oe_kanban_details">
-                                <field name="name"/>
-                                <field name="last_name"/>
+                            
+                            <div class="o_kanban_card_header_title">
+                                <div class="o_kanban_image">
+                                    <img alt="Contact image" t-att-src="kanban_image('hr.hospital.doctor', 'foto', record.id.raw_value)"/>
+                                </div>
+                                <div>
+                                    <field name="name"/>
+                                    <field name="last_name"/>
+                                </div>
+                                <div>
+                                    <field name="specialty"/>
+                                </div>
+                                <div t-if="record.phone.raw_value">Phone: <t t-esc="record.phone.value"/></div>
                                 <div t-if="record.email.raw_value"><field name="email" widget="email"/></div>
-                                <div t-if="record.phone.raw_value">Phone: <t t-esc="record.phone.value"/></div>                                                    
-                            </div> 
-                            <div class="oe_kanban_footer">
-                                <button class="oe_stat_button" type="action" name="%(hr_hospital_doctor_create_patient_visit_action_form)d" >
-                                    Create visit </button>                                
                             </div>
-                                          
+                            
+                            <div class="col-xs-12" style="height: 20px;"/>
+
+                            <div class="container o_kanban_card_content">
+                                <div class="row">
+                                    <div class="col-6 o_kanban_primary_left">
+                                        <button class="btn btn-primary"
+                                                string="Create visit"
+                                                name="%(hr_hospital_doctor_create_patient_visit_action_form)d"
+                                                type="action">
+                                            <span>Create visit</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-6 o_kanban_primary_right">Patients:
+                                        <field name="personal_patient_ids"
+                                               widget="many2many_tags"/>
+                                    </div>
+                                </div>
+                            </div> 
+                            
                         </div>
                     </t>
                 </templates>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <data>
+
+        <record id="action_report_doctor" model="ir.actions.report">
+            <field name="name">Doctor report</field>
+            <field name="model">hr.hospital.doctor</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">hr_hospital.doctor_report</field>
+            <field name="report_file">hr_hospital.doctor_report</field>
+            <field name="print_report_name">'Doctor - %s' % (object.name)</field>
+        </record>    
+
+    </data>
+
+</odoo>

@@ -23,6 +23,10 @@ class Person(models.AbstractModel):
         inverse_name='patient_id',
     )
 
+    def get_full_name(self):
+        self.ensure_one()
+        return f'{self.name} {self.last_name}'
+
 
 class ContactPerson(models.Model):
     _name = 'hr.hospital.contact.person'
